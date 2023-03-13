@@ -32,36 +32,70 @@ function displayResults(weather) {
   let temp = document.querySelector(".current .temp");
   temp.innerHTML = `${Math.round(weather.main.temp)}<span>°C</span>`;
 
+  let hiLow = document.querySelector(".current .hi-low");
+  hiLow.innerText = `${Math.round(weather.main.temp_min)}°C / ${Math.round(
+    weather.main.temp_max
+  )}°C`;
+
   let weatherEl = document.querySelector(".current .weather");
   weatherEl.innerText = weather.weather[0].main;
 
-  let hiLow = document.querySelector(".current .hi-low");
-  hiLow.innerText = `${weather.main.temp_min}°C / ${weather.main.temp_max}°C`;
+  let currentWeather = weatherEl.innerText;
+
+  switch (currentWeather) {
+    case "Clouds":
+      document.body.style.backgroundImage = "url(imgs/cloudyBG.png)";
+      weatherEl.innerText = "Nublado";
+      break;
+    case "Clear":
+      document.body.style.backgroundImage = "url(imgs/sunnyBG.png)";
+      weatherEl.innerText = "Ensolarado";
+      break;
+    case "Rain":
+      document.body.style.backgroundImage = "url(imgs/rainyBG.png)";
+      weatherEl.innerText = "Chuvoso";
+      break;
+    case "Thunderstorm":
+      document.body.style.backgroundImage = "url(imgs/stormyBG.png)";
+      weatherEl.innerText = "Tempestade";
+      break;
+    case "Drizzle":
+      document.body.style.backgroundImage = "url(imgs/rainyBG.png)";
+      weatherEl.innerText = "Chuvoso";
+      break;
+    case "Snow":
+      document.body.style.backgroundImage = "url(imgs/snowyBG.png)";
+      weatherEl.innerText = "Nevando";
+      break;
+    default:
+      document.body.style.backgroundImage = "url(imgs/stormyBG.png)";
+      weatherEl.innerText = "Tempestade";
+  }
 }
 
 function dateBuilder(d) {
   let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "may",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
   ];
   let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    "Domingo",
+    "Segunda-Feira",
+    "Terça-Feira",
+    "Quarta-Feira",
+    "Quinta-Feira",
+    "Sexta-Feira",
+    "Sábado",
   ];
 
   let day = days[d.getDay()];
